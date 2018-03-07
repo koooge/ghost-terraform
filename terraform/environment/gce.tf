@@ -1,3 +1,8 @@
+resource "google_compute_address" "wannabe-engineer" {
+  name = "wannabe-engineer"
+  region = "us-west1"
+}
+
 resource "google_compute_instance" "wannabe-engineer" {
   name = "wannabe-engineer"
   machine_type = "f1-micro"
@@ -11,7 +16,9 @@ resource "google_compute_instance" "wannabe-engineer" {
   }
   network_interface {
     subnetwork = "default"
+    access_config {
+      nat_ip = "${google_compute_address.wannabe-engineer.address}"
+    }
   }
-  project = "wannabe-engineer"
   tags = ["https-server"]
 }
