@@ -21,4 +21,8 @@ resource "google_compute_instance" "wannabe-engineer" {
     }
   }
   tags = ["https-server"]
+	metadata {
+    "block-project-ssh-keys" = "true"
+    "ssh-keys" = "${file("id_rsa.pub")}"
+  }
 }
