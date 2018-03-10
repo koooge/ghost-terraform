@@ -1,8 +1,3 @@
-resource "google_compute_address" "wannabe-engineer" {
-  name = "wannabe-engineer"
-  region = "us-west1"
-}
-
 resource "google_compute_instance" "wannabe-engineer" {
   name = "wannabe-engineer"
   machine_type = "f1-micro"
@@ -15,14 +10,12 @@ resource "google_compute_instance" "wannabe-engineer" {
     }
   }
   network_interface {
-    subnetwork = "default"
-    access_config {
-      nat_ip = "${google_compute_address.wannabe-engineer.address}"
-    }
+    network = "default"
+    access_config {}
   }
-  tags = ["https-server"]
+  tags = ["https-server", "default-allow-ssh", "default-allow-icmp"]
 	metadata {
     "block-project-ssh-keys" = "true"
-    "ssh-keys" = "${file("id_rsa.pub")}"
+    "ssh-keys" = "koooooge:${file("id_rsa.pub")}"
   }
 }
