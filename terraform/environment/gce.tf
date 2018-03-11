@@ -13,9 +13,17 @@ resource "google_compute_instance" "wannabe-engineer" {
     network = "default"
     access_config {}
   }
-  tags = ["https-server", "default-allow-ssh", "default-allow-icmp"]
+  tags = ["https-server", "default-allow-ssh"]
 	metadata {
     "block-project-ssh-keys" = "true"
     "ssh-keys" = "koooooge:${file("id_rsa.pub")}"
+  }
+  provisioner "remote-exec" {
+    connection {
+      type = "ssh"
+      user = "koooooge"
+      private_key = "${file("id_rsa")}"
+    }
+    scripts = ["provisioning/ghost.sh"]
   }
 }
