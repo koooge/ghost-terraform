@@ -13,7 +13,7 @@ resource "google_compute_instance" "wannabe-engineer" {
     network = "default"
     access_config {}
   }
-  tags = ["https-server", "default-allow-ssh"]
+  tags = ["http-server", "https-server", "default-allow-ssh"]
 	metadata {
     "block-project-ssh-keys" = "true"
     "ssh-keys" = "koooooge:${file("id_rsa.pub")}"
