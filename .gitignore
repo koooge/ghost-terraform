@@ -1,4 +1,3 @@
-.terraform/
-
+/environment/.terraform/
 /environment/account.json
 /environment/id_rsa*
