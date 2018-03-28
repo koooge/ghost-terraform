@@ -29,5 +29,5 @@ sudo npm i -g ghost-cli
 sudo mkdir -p /var/www/ghost
 sudo chown ${USER}:${USER} /var/www/ghost
 sudo chmod 775 /var/www/ghost
-cd /var/www/ghost
-#ghost install
+# cd /var/www/ghost
+# ghost install
